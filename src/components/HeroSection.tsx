@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useTransform, type Variants } from "framer-motion"
+import { motion } from "framer-motion"
 import { LoadingScreen } from "./LoadingScreen"
 import { CONTACT } from "@/lib/data"
 
@@ -14,36 +14,17 @@ export function HeroSection() {
   const [loaderDone, setLoaderDone] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  })
-  const orb1Y = useTransform(scrollYProgress, [0, 1], [0, -120])
-  const orb2Y = useTransform(scrollYProgress, [0, 1], [0, -80])
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 60])
-
   useEffect(() => {
     setShowLoader(true)
-    setRoleIndex(0)
   }, [])
 
   useEffect(() => {
     if (!loaderDone) return
     const interval = setInterval(() => {
       setRoleIndex((i) => (i + 1) % ROLES.length)
-    }, 2200)
+    }, 2000)
     return () => clearInterval(interval)
   }, [loaderDone])
-
-  const variants: Variants = {
-    hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.9, delay: i * 0.12, ease: "easeOut" },
-    }),
-  }
 
   return (
     <>
@@ -59,257 +40,193 @@ export function HeroSection() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
           overflow: "hidden",
+          textAlign: "center",
         }}
       >
-        {/* ── Background: grid texture ── */}
-        <div
-          className="grid-texture"
-          style={{ position: "absolute", inset: 0, opacity: 0.6 }}
-        />
-
-        {/* ── Background: gradient orbs ── */}
-        <motion.div
-          style={{
-            position: "absolute",
-            top: "-20%",
-            right: "-10%",
-            width: "600px",
-            height: "600px",
-            background: "radial-gradient(circle, rgba(47,129,247,0.14) 0%, transparent 68%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
-            y: orb1Y,
-            animation: "orb-1 10s ease-in-out infinite",
-          }}
-        />
-        <motion.div
-          style={{
-            position: "absolute",
-            bottom: "-15%",
-            left: "-8%",
-            width: "500px",
-            height: "500px",
-            background: "radial-gradient(circle, rgba(139,92,246,0.11) 0%, transparent 68%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
-            y: orb2Y,
-            animation: "orb-2 14s ease-in-out infinite",
-          }}
-        />
+        {/* Subtle grid background */}
         <div
           style={{
             position: "absolute",
-            top: "40%",
-            left: "40%",
-            width: "300px",
-            height: "300px",
-            background: "radial-gradient(circle, rgba(47,129,247,0.06) 0%, transparent 70%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
-            animation: "orb-3 18s ease-in-out infinite",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+            opacity: 0.6,
           }}
         />
 
-        {/* ── Content ── */}
-        <motion.div
+        {/* Content */}
+        <div
           style={{
             position: "relative",
             zIndex: 1,
-            maxWidth: "760px",
-            margin: "0 auto",
-            padding: "100px 24px 80px",
+            maxWidth: "800px",
             width: "100%",
-            y: contentY,
+            padding: "0 24px",
           }}
         >
-          {/* Eyebrow badge */}
+          {/* Eyebrow */}
           <motion.div
-            custom={0}
-            initial="hidden"
-            animate={loaderDone ? "visible" : "hidden"}
-            variants={variants}
+            initial={{ opacity: 0, y: -10 }}
+            animate={loaderDone ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            style={{ marginBottom: 40 }}
           >
             <span
-              className="liquid-glass"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "11px",
+                fontSize: 11,
                 color: "var(--text-muted)",
-                letterSpacing: "0.2em",
+                letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                borderRadius: "9999px",
-                padding: "6px 14px",
-                marginBottom: "32px",
+                fontFamily: "var(--font-geist-mono)",
               }}
             >
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "var(--green)",
-                  boxShadow: "0 0 6px var(--green)",
-                  display: "inline-block",
-                  flexShrink: 0,
-                }}
-              />
-              Full-Stack Engineer · 15 · India
+              Collection &apos;26
             </span>
           </motion.div>
 
-          {/* Main headline */}
+          {/* Main name — elvana.in style: huge display type */}
           <motion.h1
-            custom={1}
-            initial="hidden"
-            animate={loaderDone ? "visible" : "hidden"}
-            variants={variants}
+            initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+            animate={loaderDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
             style={{
-              fontSize: "clamp(44px, 8vw, 80px)",
-              fontWeight: 700,
+              fontFamily: "var(--font-instrument-serif)",
+              fontStyle: "italic",
+              fontWeight: 400,
+              fontSize: "clamp(72px, 14vw, 140px)",
               color: "var(--text)",
+              lineHeight: 0.9,
               letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              margin: "0 0 24px",
+              margin: "0 0 32px",
             }}
           >
-            I build{" "}
-            <span
-              className="display gradient-text"
-              style={{ fontWeight: 400 }}
-            >
-              developer
-            </span>
-            <br />
-            tools.
+            Veeresh
           </motion.h1>
 
-          {/* Role cycling */}
+          {/* Role cycling line */}
           <motion.p
-            custom={2}
-            initial="hidden"
-            animate={loaderDone ? "visible" : "hidden"}
-            variants={variants}
+            initial={{ opacity: 0, filter: "blur(6px)" }}
+            animate={loaderDone ? { opacity: 1, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
             style={{
-              fontSize: "16px",
-              color: "var(--text-muted)",
-              margin: "0 0 40px",
-              lineHeight: 1.6,
+              fontSize: "clamp(16px, 2.5vw, 20px)",
+              color: "var(--text-2)",
+              margin: "0 0 16px",
+              lineHeight: 1.4,
             }}
           >
-            A self-taught{" "}
+            A{" "}
             <span
               key={roleIndex}
               style={{
-                color: "var(--text-2)",
+                fontFamily: "var(--font-instrument-serif)",
+                fontStyle: "italic",
+                color: "var(--text)",
                 display: "inline-block",
-                animation: "word-in 0.4s cubic-bezier(0.4,0,0.2,1)",
+                animation: "word-in 0.4s ease-out",
               }}
             >
               {ROLES[roleIndex]}
             </span>{" "}
-            who ships real products. Not tutorials. Not clones.
+            from Telangana, India.
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, filter: "blur(6px)" }}
+            animate={loaderDone ? { opacity: 1, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
+            style={{
+              fontSize: 14,
+              color: "var(--text-muted)",
+              maxWidth: 420,
+              lineHeight: 1.7,
+              margin: "0 auto 44px",
+            }}
+          >
+            Building developer tools that solve problems I actually run into.
+            ShipSafe and Patchwork are live in production.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            custom={3}
-            initial="hidden"
-            animate={loaderDone ? "visible" : "hidden"}
-            variants={variants}
-            style={{ display: "flex", gap: "12px", flexWrap: "wrap" as const }}
+            initial={{ opacity: 0, filter: "blur(6px)" }}
+            animate={loaderDone ? { opacity: 1, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
+            style={{ display: "inline-flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}
           >
             <Link
               href="/projects"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                height: "44px",
-                padding: "0 24px",
-                background: "linear-gradient(135deg, #2f81f7 0%, #8b5cf6 100%)",
-                borderRadius: "9999px",
-                fontSize: "14px",
+                height: 44,
+                padding: "0 28px",
+                background: "var(--text)",
+                borderRadius: 9999,
+                fontSize: 13,
                 fontWeight: 500,
-                color: "#fff",
+                color: "var(--bg)",
                 textDecoration: "none",
-                boxShadow: "0 4px 24px rgba(47, 129, 247, 0.3)",
-                transition: "opacity 150ms, transform 150ms",
+                transition: "opacity 150ms",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.88"; (e.currentTarget as HTMLElement).style.transform = "scale(1.03)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85" }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1" }}
             >
-              View my work
+              See Works
             </Link>
             <a
               href={CONTACT.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="liquid-glass"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                height: "44px",
-                padding: "0 24px",
-                borderRadius: "9999px",
-                fontSize: "14px",
-                color: "var(--text-2)",
+                height: 44,
+                padding: "0 28px",
+                background: "transparent",
+                border: "2px solid var(--border)",
+                borderRadius: 9999,
+                fontSize: 13,
+                color: "var(--text)",
                 textDecoration: "none",
-                transition: "color 150ms",
+                transition: "border-color 150ms",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-2)"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--text-muted)" }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)" }}
             >
-              GitHub ↗
+              Reach out ↗
             </a>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* ── Scroll indicator ── */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={loaderDone ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          animate={loaderDone ? { opacity: 1 } : {}}
+          transition={{ delay: 1.4, duration: 0.8 }}
           style={{
             position: "absolute",
-            bottom: "32px",
-            left: "50%",
-            transform: "translateX(-50%)",
+            bottom: 32,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "8px",
-            zIndex: 1,
+            gap: 8,
           }}
         >
-          <span
-            style={{
-              fontSize: "10px",
-              color: "var(--text-dim)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-            }}
-          >
+          <span style={{ fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Scroll
           </span>
-          <div
-            style={{
-              width: "1px",
-              height: "40px",
-              background: "var(--border)",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
+          <div style={{ width: 1, height: 40, background: "var(--border)", position: "relative", overflow: "hidden" }}>
             <div
               style={{
                 position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
+                top: 0, left: 0, right: 0,
                 height: "40%",
-                background: "var(--accent)",
+                background: "var(--text-muted)",
                 animation: "scroll-indicator 1.6s ease-in-out infinite",
               }}
             />
