@@ -2,7 +2,7 @@
 
 Personal portfolio showcasing two production SaaS tools built in 2026.
 
-**Live:** https://portfolio-six-kohl-89.vercel.app  
+**Live:** https://veeresh-portfolio-dev.vercel.app  
 **GitHub profile:** https://github.com/debug949
 
 ---
@@ -12,12 +12,12 @@ Personal portfolio showcasing two production SaaS tools built in 2026.
 ### ShipSafe
 Web security audit tool. Paste a URL → 19 parallel HTTP checks via `Promise.all` → composite 0–100 score + A–F grade → AI-generated prioritized fix list → shareable report link backed by PostgreSQL.
 
-[Live](https://shipsafe-xzne.vercel.app/) · [GitHub](https://github.com/debug949/shipsafe) · [Case study](https://portfolio-six-kohl-89.vercel.app/projects/shipsafe)
+[Live](https://shipsafe-xzne.vercel.app/) · [GitHub](https://github.com/debug949/shipsafe) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/shipsafe)
 
 ### Patchwork
 GitHub OAuth changelog generator. Sign in with GitHub → connect a repo → one click generates a categorized changelog from commit history → public URL + embeddable `<iframe>` widget.
 
-[Live](https://patchwork-theta.vercel.app) · [GitHub](https://github.com/debug949/patchwork) · [Case study](https://portfolio-six-kohl-89.vercel.app/projects/patchwork)
+[Live](https://patchwork-theta.vercel.app) · [GitHub](https://github.com/debug949/patchwork) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/patchwork)
 
 ---
 

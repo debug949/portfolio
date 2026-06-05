@@ -9,7 +9,7 @@
 
 Veeresh's personal developer portfolio. A Next.js 16 App Router site — fully statically generated, zero env vars, zero database, zero auth. Ships instantly, never has a 500 error.
 
-**Live:** https://portfolio-six-kohl-89.vercel.app  
+**Live:** https://veeresh-portfolio-dev.vercel.app  
 **GitHub:** https://github.com/debug949/portfolio  
 **Vercel project:** debug949s-projects/portfolio
 
@@ -155,7 +155,7 @@ export default [...nextConfig, ...nextTypescriptConfig]
 ```
 
 ### Vercel public URL
-The Vercel project's stable public URL is `portfolio-six-kohl-89.vercel.app` (Vercel's auto-assigned promotion alias). This alias is assigned once and persists across all future deploys.
+The Vercel project's stable public URL is `veeresh-portfolio-dev.vercel.app` (Vercel's auto-assigned promotion alias). This alias is assigned once and persists across all future deploys.
 
 Other aliases (`portfolio-debug949s-projects.vercel.app`, manually set ones) return 401 because Vercel's Standard Deployment Protection applies to all URLs except the auto-assigned promotion alias.
 
