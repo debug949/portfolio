@@ -2,49 +2,113 @@ import Link from "next/link"
 import type { Project } from "@/lib/data"
 import { TechBadge } from "./TechBadge"
 
+const CARD_THEMES: Record<string, {
+  gradient: string
+  accentColor: string
+  borderColor: string
+  glowColor: string
+}> = {
+  shipsafe: {
+    gradient: "linear-gradient(145deg, #0a1f38 0%, #071422 60%, #060a0f 100%)",
+    accentColor: "#2f81f7",
+    borderColor: "rgba(47, 129, 247, 0.2)",
+    glowColor: "rgba(47, 129, 247, 0.08)",
+  },
+  patchwork: {
+    gradient: "linear-gradient(145deg, #160d30 0%, #0e0820 60%, #060a0f 100%)",
+    accentColor: "#8b5cf6",
+    borderColor: "rgba(139, 92, 246, 0.2)",
+    glowColor: "rgba(139, 92, 246, 0.08)",
+  },
+}
+
+const DEFAULT_THEME = {
+  gradient: "linear-gradient(145deg, var(--bg-surface) 0%, var(--bg) 100%)",
+  accentColor: "var(--accent)",
+  borderColor: "var(--border)",
+  glowColor: "transparent",
+}
+
 export function ProjectCard({ project }: { project: Project }) {
+  const theme = CARD_THEMES[project.slug] ?? DEFAULT_THEME
+
   return (
     <article
+      className="project-card"
       style={{
-        background: "var(--bg-surface)",
-        border: "1px solid var(--border)",
-        borderRadius: "8px",
-        padding: "20px 24px",
+        background: theme.gradient,
+        border: `1px solid ${theme.borderColor}`,
+        borderRadius: "20px",
+        padding: "28px",
         display: "flex",
         flexDirection: "column" as const,
-        gap: "12px",
+        gap: "16px",
+        position: "relative" as const,
+        overflow: "hidden" as const,
+        boxShadow: `0 0 60px ${theme.glowColor}, inset 0 1px 0 rgba(255,255,255,0.05)`,
       }}
     >
+      {/* Subtle top highlight line */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: "15%",
+          right: "15%",
+          height: "1px",
+          background: `linear-gradient(90deg, transparent, ${theme.accentColor}55, transparent)`,
+        }}
+      />
+
+      {/* Corner decoration */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-60px",
+          right: "-60px",
+          width: "180px",
+          height: "180px",
+          background: `radial-gradient(circle, ${theme.accentColor}18 0%, transparent 70%)`,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <span
+        <h2
           style={{
-            fontSize: "16px",
-            fontWeight: 600,
+            fontFamily: "var(--font-instrument-serif)",
+            fontStyle: "italic",
+            fontSize: "26px",
+            fontWeight: 400,
             color: "var(--text)",
+            margin: 0,
+            letterSpacing: "-0.01em",
           }}
         >
           {project.name}
-        </span>
+        </h2>
         <span
           style={{
             display: "inline-flex",
             alignItems: "center",
             gap: "5px",
-            fontSize: "11px",
+            fontSize: "10px",
             color: "var(--green)",
             background: "rgba(63, 185, 80, 0.1)",
             border: "1px solid rgba(63, 185, 80, 0.2)",
-            borderRadius: "99px",
-            padding: "2px 8px",
+            borderRadius: "9999px",
+            padding: "3px 8px",
+            flexShrink: 0,
           }}
         >
           <span
             style={{
-              width: "6px",
-              height: "6px",
+              width: "5px",
+              height: "5px",
               borderRadius: "50%",
               background: "var(--green)",
+              boxShadow: "0 0 4px var(--green)",
               display: "inline-block",
             }}
           />
@@ -53,14 +117,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {/* Tagline */}
-      <p
-        style={{
-          fontSize: "14px",
-          color: "var(--text-2)",
-          margin: 0,
-          lineHeight: 1.5,
-        }}
-      >
+      <p style={{ fontSize: "14px", color: "var(--text-2)", margin: 0, lineHeight: 1.55 }}>
         {project.tagline}
       </p>
 
@@ -72,7 +129,7 @@ export function ProjectCard({ project }: { project: Project }) {
           listStyle: "none",
           display: "flex",
           flexDirection: "column" as const,
-          gap: "4px",
+          gap: "5px",
         }}
       >
         {project.stats.map((stat) => (
@@ -86,7 +143,9 @@ export function ProjectCard({ project }: { project: Project }) {
               gap: "8px",
             }}
           >
-            <span style={{ color: "var(--accent)", flexShrink: 0 }}>·</span>
+            <span style={{ color: theme.accentColor, flexShrink: 0, fontWeight: 600 }}>
+              ·
+            </span>
             {stat}
           </li>
         ))}
@@ -99,22 +158,22 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
 
-      {/* Links */}
+      {/* Links — revealed on hover via CSS .card-links class */}
       <div
+        className="card-links"
         style={{
           display: "flex",
           gap: "16px",
           flexWrap: "wrap" as const,
-          marginTop: "4px",
           paddingTop: "12px",
-          borderTop: "1px solid var(--border-muted)",
+          borderTop: `1px solid ${theme.borderColor}`,
         }}
       >
         <Link
           href={project.caseStudyPath}
           style={{
             fontSize: "13px",
-            color: "var(--accent)",
+            color: theme.accentColor,
             textDecoration: "none",
             fontWeight: 500,
           }}
@@ -125,11 +184,7 @@ export function ProjectCard({ project }: { project: Project }) {
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: "13px",
-            color: "var(--text-muted)",
-            textDecoration: "none",
-          }}
+          style={{ fontSize: "13px", color: "var(--text-muted)", textDecoration: "none" }}
         >
           GitHub ↗
         </a>
@@ -137,11 +192,7 @@ export function ProjectCard({ project }: { project: Project }) {
           href={project.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: "13px",
-            color: "var(--text-muted)",
-            textDecoration: "none",
-          }}
+          style={{ fontSize: "13px", color: "var(--text-muted)", textDecoration: "none" }}
         >
           Live demo ↗
         </a>

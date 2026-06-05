@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:  var(--font-geist-sans);
+  --font-mono:  var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
 }
 
+/* ─── Design tokens ─────────────────────────────────────── */
 :root {
   --bg:           #060a0f;
   --bg-surface:   #0d1117;
@@ -17,12 +19,15 @@
   --text-dim:     #404850;
   --accent:       #2f81f7;
   --accent-dim:   rgba(47, 129, 247, 0.15);
+  --purple:       #8b5cf6;
+  --purple-dim:   rgba(139, 92, 246, 0.15);
   --green:        #3fb950;
   --red:          #f85149;
   --yellow:       #d29922;
   --orange:       #db6d28;
 }
 
+/* ─── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html { font-size: 15px; scroll-behavior: smooth; }
@@ -47,23 +52,126 @@ code, pre, .mono {
   outline-offset: 2px;
 }
 
-/* Nav responsive */
+/* ─── Typography ─────────────────────────────────────────── */
+.display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-style: italic;
+}
+
+/* ─── Liquid glass ───────────────────────────────────────── */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  position: relative;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.04) 35%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0.04) 80%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Gradient utilities ─────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #89aacc 0%, #4e85bf 45%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-gradient-bg {
+  background: linear-gradient(135deg, #2f81f7 0%, #8b5cf6 100%);
+}
+
+/* ─── Grid texture overlay ───────────────────────────────── */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ─── Orb animations ─────────────────────────────────────── */
+@keyframes orb-1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(40px,-30px) scale(1.06); }
+  66%     { transform: translate(-20px,25px) scale(0.97); }
+}
+@keyframes orb-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(-50px,-40px) scale(1.08); }
+}
+@keyframes orb-3 {
+  0%,100% { transform: translate(0,0); }
+  40%     { transform: translate(30px,-15px); }
+  80%     { transform: translate(-20px,20px); }
+}
+
+/* ─── Scroll indicator ───────────────────────────────────── */
+@keyframes scroll-indicator {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
+
+/* ─── Loading screen word transition ─────────────────────── */
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Generic hover utilities (server-component safe) ────── */
+.hover-text:hover   { color: var(--text) !important; }
+.hover-accent:hover { color: var(--accent) !important; }
+.hover-opacity:hover { opacity: 0.8; }
+
+/* ─── Project bento card hover ───────────────────────────── */
+.project-card {
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.35s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+.project-card:hover .card-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-links {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ─── Nav responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
-  .nav-desktop { display: none !important; }
+  .nav-desktop    { display: none !important; }
   .nav-mobile-btn { display: flex !important; }
 }
 
-/* Resume print */
+/* ─── Resume / print ─────────────────────────────────────── */
 @media print {
   :root {
-    --bg: white;
-    --bg-surface: white;
-    --bg-elevated: #f6f8fa;
-    --text: #111;
-    --text-2: #444;
-    --text-muted: #555;
-    --border: #ccc;
-    --accent: #0969da;
+    --bg: white; --bg-surface: white; --bg-elevated: #f6f8fa;
+    --text: #111; --text-2: #444; --text-muted: #555;
+    --border: #ccc; --accent: #0969da;
   }
   nav, footer, .no-print { display: none !important; }
   body { font-size: 11pt; background: white; }

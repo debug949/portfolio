@@ -3,6 +3,8 @@ import Link from "next/link"
 import { PROJECTS, SKILL_GROUPS, CONTACT, PORTFOLIO_URL } from "@/lib/data"
 import { ProjectCard } from "@/components/ProjectCard"
 import { SectionLabel } from "@/components/SectionLabel"
+import { HeroSection } from "@/components/HeroSection"
+import { AnimatedSection } from "@/components/AnimatedSection"
 
 export const metadata: Metadata = {
   title: "Veeresh — Full-Stack Engineer",
@@ -21,18 +23,6 @@ const jsonLd = {
   sameAs: [CONTACT.github],
 }
 
-const page = {
-  maxWidth: "760px",
-  margin: "0 auto",
-  padding: "0 20px",
-}
-
-const wideContainer = {
-  maxWidth: "1000px",
-  margin: "0 auto",
-  padding: "0 20px",
-}
-
 export default function HomePage() {
   return (
     <>
@@ -41,129 +31,70 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <section
-        style={{
-          ...page,
-          paddingTop: "80px",
-          paddingBottom: "80px",
-        }}
+      {/* ── Hero (full viewport, client component) ── */}
+      <HeroSection />
+
+      {/* ── Projects bento grid ── */}
+      <AnimatedSection
+        style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 20px 100px" }}
       >
-        <h1
+        <div
           style={{
-            fontSize: "clamp(36px, 6vw, 56px)",
-            fontWeight: 700,
-            color: "var(--text)",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1,
-            margin: "0 0 16px",
+            marginBottom: "32px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap" as const,
+            gap: "12px",
           }}
         >
-          I build developer tools.
-        </h1>
-        <p
-          style={{
-            fontSize: "18px",
-            color: "var(--text-2)",
-            margin: "0 0 8px",
-            lineHeight: 1.5,
-          }}
-        >
-          Full-stack engineer · 15 · Telangana, India
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--font-geist-mono)",
-            fontSize: "13px",
-            color: "var(--text-muted)",
-            margin: "0 0 40px",
-          }}
-        >
-          Next.js · TypeScript · PostgreSQL · OAuth · AI
-        </p>
-        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" as const }}>
+          <SectionLabel>Selected work</SectionLabel>
           <Link
             href="/projects"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              height: "40px",
-              padding: "0 20px",
-              background: "var(--accent)",
-              borderRadius: "6px",
-              fontSize: "14px",
-              fontWeight: 500,
-              color: "#fff",
-              textDecoration: "none",
-            }}
+            className="hover-text"
+            style={{ fontSize: "13px", color: "var(--text-muted)", textDecoration: "none", transition: "color 150ms" }}
           >
-            View my work
+            View all →
           </Link>
-          <a
-            href={CONTACT.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              height: "40px",
-              padding: "0 20px",
-              background: "transparent",
-              border: "1px solid var(--border)",
-              borderRadius: "6px",
-              fontSize: "14px",
-              color: "var(--text-2)",
-              textDecoration: "none",
-            }}
-          >
-            GitHub ↗
-          </a>
         </div>
-      </section>
-
-      {/* Projects */}
-      <section style={{ ...wideContainer, paddingBottom: "80px" }}>
-        <SectionLabel>Selected work</SectionLabel>
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "16px",
+            gap: "20px",
           }}
         >
           {PROJECTS.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
-      </section>
+      </AnimatedSection>
 
-      {/* Skills */}
-      <section style={{ ...page, paddingBottom: "80px" }}>
+      {/* ── Skills ── */}
+      <AnimatedSection style={{ maxWidth: "760px", margin: "0 auto", padding: "0 20px 100px" }}>
         <SectionLabel>Skills</SectionLabel>
         <div
           style={{
-            display: "flex",
-            flexDirection: "column" as const,
-            gap: "12px",
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border)",
+            borderRadius: "16px",
+            overflow: "hidden",
           }}
         >
-          {SKILL_GROUPS.map((group) => (
+          {SKILL_GROUPS.map((group, i) => (
             <div
               key={group.label}
               style={{
                 display: "grid",
-                gridTemplateColumns: "120px 1fr",
-                gap: "12px",
+                gridTemplateColumns: "130px 1fr",
+                gap: "16px",
+                padding: "16px 20px",
+                borderBottom:
+                  i < SKILL_GROUPS.length - 1 ? "1px solid var(--border-muted)" : "none",
                 alignItems: "start",
               }}
             >
-              <span
-                style={{
-                  fontSize: "13px",
-                  color: "var(--text-muted)",
-                  paddingTop: "2px",
-                }}
-              >
+              <span style={{ fontSize: "12px", color: "var(--text-muted)", paddingTop: "3px" }}>
                 {group.label}
               </span>
               <div style={{ display: "flex", flexWrap: "wrap" as const, gap: "6px" }}>
@@ -171,12 +102,12 @@ export default function HomePage() {
                   <span
                     key={skill}
                     style={{
-                      fontSize: "13px",
+                      fontSize: "12px",
                       color: "var(--text-2)",
                       background: "var(--bg-elevated)",
                       border: "1px solid var(--border)",
-                      borderRadius: "4px",
-                      padding: "2px 8px",
+                      borderRadius: "6px",
+                      padding: "3px 9px",
                     }}
                   >
                     {skill}
@@ -186,84 +117,82 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </AnimatedSection>
 
-      {/* About teaser */}
-      <section
+      {/* ── About teaser ── */}
+      <AnimatedSection
         style={{
-          ...page,
-          paddingBottom: "80px",
-          borderTop: "1px solid var(--border-muted)",
-          paddingTop: "48px",
+          maxWidth: "760px",
+          margin: "0 auto",
+          padding: "64px 20px 100px",
+          borderTop: "1px solid rgba(255,255,255,0.04)",
         }}
       >
-        <p
-          style={{
-            fontSize: "16px",
-            color: "var(--text-2)",
-            lineHeight: 1.7,
-            margin: "0 0 16px",
-          }}
-        >
-          I&apos;m a self-taught developer from Telangana, building developer tools that solve
-          problems I actually run into. I prefer shipping real products over tutorial clones.
-        </p>
+        <blockquote style={{ margin: "0 0 24px", padding: 0 }}>
+          <p
+            style={{
+              fontFamily: "var(--font-instrument-serif)",
+              fontStyle: "italic",
+              fontSize: "clamp(22px, 4vw, 32px)",
+              color: "var(--text)",
+              lineHeight: 1.4,
+              letterSpacing: "-0.01em",
+              margin: "0 0 8px",
+            }}
+          >
+            &ldquo;I prefer shipping real products over tutorial clones.&rdquo;
+          </p>
+          <cite style={{ fontSize: "13px", color: "var(--text-muted)", fontStyle: "normal" }}>
+            — Self-taught from Telangana. Class 10.
+          </cite>
+        </blockquote>
         <Link
           href="/about"
-          style={{
-            fontSize: "14px",
-            color: "var(--accent)",
-            textDecoration: "none",
-          }}
+          style={{ fontSize: "14px", color: "var(--accent)", textDecoration: "none" }}
         >
           Full story →
         </Link>
-      </section>
+      </AnimatedSection>
 
-      {/* Contact */}
-      <section
-        style={{
-          ...page,
-          paddingBottom: "80px",
-        }}
-      >
+      {/* ── Contact ── */}
+      <AnimatedSection style={{ maxWidth: "760px", margin: "0 auto", padding: "0 20px 100px" }}>
         <SectionLabel>Let&apos;s talk</SectionLabel>
-        <p
+
+        <a
+          href={`mailto:${CONTACT.email}`}
+          className="hover-accent"
           style={{
-            fontSize: "15px",
-            color: "var(--text-2)",
-            margin: "0 0 20px",
-            lineHeight: 1.7,
+            display: "block",
+            fontFamily: "var(--font-instrument-serif)",
+            fontStyle: "italic",
+            fontSize: "clamp(20px, 4vw, 30px)",
+            color: "var(--text)",
+            textDecoration: "none",
+            marginBottom: "8px",
+            transition: "color 150ms",
           }}
         >
+          {CONTACT.email} ↗
+        </a>
+
+        <p style={{ fontSize: "14px", color: "var(--text-muted)", margin: "0 0 20px" }}>
           Open to internships, freelance projects, and collaborations.
         </p>
-        <div style={{ display: "flex", flexDirection: "column" as const, gap: "8px" }}>
-          <a
-            href={`mailto:${CONTACT.email}`}
-            style={{
-              fontSize: "15px",
-              color: "var(--text)",
-              textDecoration: "none",
-              fontFamily: "var(--font-geist-mono)",
-            }}
-          >
-            {CONTACT.email}
-          </a>
-          <a
-            href={CONTACT.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontSize: "14px",
-              color: "var(--text-muted)",
-              textDecoration: "none",
-            }}
-          >
-            github.com/debug949 ↗
-          </a>
-        </div>
-      </section>
+
+        <a
+          href={CONTACT.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontSize: "13px",
+            color: "var(--text-muted)",
+            textDecoration: "none",
+            fontFamily: "var(--font-geist-mono)",
+          }}
+        >
+          github.com/debug949 ↗
+        </a>
+      </AnimatedSection>
     </>
   )
 }
