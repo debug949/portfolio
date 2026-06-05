@@ -107,5 +107,5 @@ export const CONTACT = {
   linkedin: "",
 }
 
-export const PORTFOLIO_URL = "https://veeresh-portfolio.vercel.app"
+export const PORTFOLIO_URL = "https://veeresh-portfolio-site.vercel.app"
 export const PORTFOLIO_NAME = "Veeresh"

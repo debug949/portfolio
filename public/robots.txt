@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://veeresh-portfolio.vercel.app/sitemap.xml
+Sitemap: https://veeresh-portfolio-site.vercel.app/sitemap.xml
