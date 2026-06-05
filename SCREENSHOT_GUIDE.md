@@ -107,4 +107,4 @@ This captures the entire page, not just the visible viewport.
 
 The OpenGraph image is auto-generated at `/opengraph-image` by Next.js at build time. No action needed — it appears automatically when the portfolio URL is shared on Twitter/LinkedIn/Discord.
 
-To preview it: visit `https://veeresh-portfolio-site.vercel.app/opengraph-image` in the browser.
+To preview it: visit `https://portfolio-six-kohl-89.vercel.app/opengraph-image` in the browser.

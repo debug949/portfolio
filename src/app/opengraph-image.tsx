@@ -28,7 +28,7 @@ export default function Image() {
             textTransform: "uppercase",
           }}
         >
-          veeresh-portfolio-site.vercel.app
+          portfolio-six-kohl-89.vercel.app
         </div>
         <div
           style={{
