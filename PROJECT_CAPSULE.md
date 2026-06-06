@@ -273,6 +273,22 @@ Cross-site initiative: +30% satisfaction, sub-3s load. Applies to Portfolio, Shi
 
 ---
 
-*End of PROJECT_CAPSULE.md — v2.1*  
+## 13. Custom Cursors (2026-06-06)
+
+All three sites have a `CustomCursor` client component added to their root layout. Only activates on desktop (`pointer: fine`). Uses `requestAnimationFrame` + lerp for smooth trailing. `cursor: none` is set via JS on mount.
+
+| Site | File | Style |
+|---|---|---|
+| Portfolio | `src/components/CustomCursor.tsx` | White dot (8px, mixBlendMode: difference) + white ring (36px) trailing at lerp 0.10. Dot hides on hover, ring expands 1.6×. elvana.in style. |
+| ShipSafe | `components/CustomCursor.tsx` | Green (#3fb950) glowing dot (6px) + green ring (30px). Glows brighter on hover. Matches scan/security theme. |
+| Patchwork | `src/components/CustomCursor.tsx` | Blue (#58a6ff) dot (6px) + blue ring (28px). Dot hides on hover, ring fills with blue tint. Matches Bloom/editorial theme. |
+
+**Also fixed in this session:**
+- Patchwork OAuth BOM bug: `NEXT_PUBLIC_APP_URL` had `%EF%BB%BF` BOM prefix. Deleted + re-added cleanly, redeployed, re-aliased to `patchwork-vihan.vercel.app`.
+- **PENDING USER ACTION:** Go to github.com/settings/developers → OAuth App → set callback URL to exactly `https://patchwork-vihan.vercel.app/api/auth/callback`
+
+---
+
+*End of PROJECT_CAPSULE.md — v2.2*  
 *Written: 2026-06-05 · Updated: 2026-06-06*  
-*Status: Complete + UX enhancement pass logged*
+*Status: Complete + cursors shipped*
