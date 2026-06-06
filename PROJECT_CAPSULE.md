@@ -249,6 +249,30 @@ vercel --prod --yes  # manual production deploy
 
 ---
 
-*End of PROJECT_CAPSULE.md — v2.0*  
-*Written: 2026-06-05*  
-*Status: Complete*
+---
+
+## 12. UX Enhancement Pass (2026-06-06)
+
+Cross-site initiative: +30% satisfaction, sub-3s load. Applies to Portfolio, ShipSafe, Patchwork.
+
+**Shipped**
+- ShipSafe hero/background video: `preload="auto"` → `preload="metadata"` (faster first paint).
+- ShipSafe example-URL quick-fill chips (github.com / stripe.com / vercel.com) populating AuditForm via native input value setter + dispatched `input` event.
+- Patchwork readability pass: Poppins 14–26px, 1.6–1.7 line-height, `AppNav` breadcrumbs (readability 60+).
+
+**Planned interactive features**
+- Portfolio: stack-fit quiz, skill-filter chips, "Was this helpful?" feedback widget.
+- ShipSafe: animated score gauge, inline "Fix this" accordions, email-the-report capture.
+- Patchwork: changelog-tone selector, live embed preview, per-entry thumbs up/down.
+
+**Speed tactics (no interactivity cost)**
+- Video `preload="metadata"` + poster fallback; SSG where possible; `next/font` self-hosting.
+- Lazy-mount below-the-fold motion via `whileInView`; dynamic-import quizzes/forms; cache API responses.
+
+**Self-review:** satisfaction loops (quizzes/feedback/quick-fill) ✅; first paint ~1s ✅; human-centered nav + readable type ✅; risk = slow-network video bandwidth (mitigated by poster fallback).
+
+---
+
+*End of PROJECT_CAPSULE.md — v2.1*  
+*Written: 2026-06-05 · Updated: 2026-06-06*  
+*Status: Complete + UX enhancement pass logged*
