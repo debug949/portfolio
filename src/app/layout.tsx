@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
+import { CustomCursor } from "@/components/CustomCursor"
 import "./globals.css"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body>
+        <CustomCursor />
         <Nav />
         <main style={{ paddingTop: "56px" }}>{children}</main>
         <Footer />
