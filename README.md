@@ -1,6 +1,6 @@
 # Veeresh — Developer Portfolio
 
-Personal portfolio showcasing two production SaaS tools built in 2026.
+Personal portfolio showcasing three production tools built in 2026.
 
 **Live:** https://veeresh-portfolio-dev.vercel.app  
 **GitHub profile:** https://github.com/debug949
@@ -9,15 +9,20 @@ Personal portfolio showcasing two production SaaS tools built in 2026.
 
 ## Projects
 
+### Verdict
+GitHub App PR risk engine. Installs on any repo → runs on every pull request → posts a trust score (0–100, A–F) with inline comments on flagged lines. Deterministic pipeline: regex secret scanning, OSV.dev CVE lookup for new dependencies, and zone-weighted scoring (AUTH/PAYMENT files penalised 2.5× harder than TEST files).
+
+[Live](https://verdict-vihan.vercel.app) · [GitHub](https://github.com/debug949/verdict) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/verdict)
+
 ### ShipSafe
 Web security audit tool. Paste a URL → 19 parallel HTTP checks via `Promise.all` → composite 0–100 score + A–F grade → AI-generated prioritized fix list → shareable report link backed by PostgreSQL.
 
-[Live](https://shipsafe-xzne.vercel.app/) · [GitHub](https://github.com/debug949/shipsafe) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/shipsafe)
+[Live](https://shipsafe-vihan.vercel.app) · [GitHub](https://github.com/debug949/shipsafe) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/shipsafe)
 
 ### Patchwork
 GitHub OAuth changelog generator. Sign in with GitHub → connect a repo → one click generates a categorized changelog from commit history → public URL + embeddable `<iframe>` widget.
 
-[Live](https://patchwork-theta.vercel.app) · [GitHub](https://github.com/debug949/patchwork) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/patchwork)
+[Live](https://patchwork-vihan.vercel.app) · [GitHub](https://github.com/debug949/patchwork) · [Case study](https://veeresh-portfolio-dev.vercel.app/projects/patchwork)
 
 ---
 
@@ -41,6 +46,7 @@ GitHub OAuth changelog generator. Sign in with GitHub → connect a repo → one
 | `/` | Homepage: hero, projects, skills, about teaser, contact |
 | `/about` | Full story, timeline, what I'm looking for |
 | `/projects` | Projects index |
+| `/projects/verdict` | Verdict case study |
 | `/projects/shipsafe` | ShipSafe case study |
 | `/projects/patchwork` | Patchwork case study |
 | `/resume` | Print-ready HTML resume |
