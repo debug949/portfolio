@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/ProjectCard"
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "ShipSafe and Patchwork — two production SaaS tools built by a 15-year-old developer.",
+    "ShipSafe, Patchwork, and Verdict — three production tools built by a 15-year-old developer.",
 }
 
 export default function ProjectsPage() {
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
           margin: "0 0 40px",
         }}
       >
-        Two production SaaS tools shipped in 2026.
+        Three production tools shipped in 2026.
       </p>
 
       <div

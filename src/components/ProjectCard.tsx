@@ -9,16 +9,22 @@ const CARD_THEMES: Record<string, {
   glowColor: string
 }> = {
   shipsafe: {
-    gradient: "linear-gradient(145deg, #0a1f38 0%, #071422 60%, #060a0f 100%)",
-    accentColor: "#2f81f7",
-    borderColor: "rgba(47, 129, 247, 0.2)",
-    glowColor: "rgba(47, 129, 247, 0.08)",
+    gradient: "linear-gradient(145deg, #001a0d 0%, #000e07 60%, #000000 100%)",
+    accentColor: "#00c56e",
+    borderColor: "rgba(0, 197, 110, 0.18)",
+    glowColor: "rgba(0, 197, 110, 0.07)",
   },
   patchwork: {
-    gradient: "linear-gradient(145deg, #160d30 0%, #0e0820 60%, #060a0f 100%)",
-    accentColor: "#8b5cf6",
-    borderColor: "rgba(139, 92, 246, 0.2)",
-    glowColor: "rgba(139, 92, 246, 0.08)",
+    gradient: "linear-gradient(145deg, #1c1200 0%, #0f0a00 60%, #000000 100%)",
+    accentColor: "#e8a020",
+    borderColor: "rgba(232, 160, 32, 0.18)",
+    glowColor: "rgba(232, 160, 32, 0.07)",
+  },
+  verdict: {
+    gradient: "linear-gradient(145deg, #1a0005 0%, #0d0003 60%, #000000 100%)",
+    accentColor: "#e8304a",
+    borderColor: "rgba(232, 48, 74, 0.18)",
+    glowColor: "rgba(232, 48, 74, 0.07)",
   },
 }
 
@@ -88,32 +94,6 @@ export function ProjectCard({ project }: { project: Project }) {
         >
           {project.name}
         </h2>
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "5px",
-            fontSize: "10px",
-            color: "var(--green)",
-            background: "rgba(63, 185, 80, 0.1)",
-            border: "1px solid rgba(63, 185, 80, 0.2)",
-            borderRadius: "9999px",
-            padding: "3px 8px",
-            flexShrink: 0,
-          }}
-        >
-          <span
-            style={{
-              width: "5px",
-              height: "5px",
-              borderRadius: "50%",
-              background: "var(--green)",
-              boxShadow: "0 0 4px var(--green)",
-              display: "inline-block",
-            }}
-          />
-          live
-        </span>
       </div>
 
       {/* Tagline */}

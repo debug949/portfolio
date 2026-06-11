@@ -8,23 +8,23 @@
 
 /* ─── Design tokens ─────────────────────────────────────── */
 :root {
-  --bg:           #060a0f;
-  --bg-surface:   #0d1117;
-  --bg-elevated:  #161b22;
-  --border:       #21262d;
-  --border-muted: #161b22;
-  --text:         #e6edf3;
-  --text-2:       #a0aab4;
-  --text-muted:   #7d8590;
-  --text-dim:     #404850;
-  --accent:       #2f81f7;
-  --accent-dim:   rgba(47, 129, 247, 0.15);
-  --purple:       #8b5cf6;
-  --purple-dim:   rgba(139, 92, 246, 0.15);
-  --green:        #3fb950;
-  --red:          #f85149;
-  --yellow:       #d29922;
-  --orange:       #db6d28;
+  --bg:           #000000;
+  --bg-surface:   #0a0a0a;
+  --bg-elevated:  #111111;
+  --border:       #1a1a1a;
+  --border-muted: #111111;
+  --text:         #f0f0f0;
+  --text-2:       #999999;
+  --text-muted:   #555555;
+  --text-dim:     #2a2a2a;
+  --accent:       #00c56e;
+  --accent-dim:   rgba(0, 197, 110, 0.12);
+  --amber:        #e8a020;
+  --amber-dim:    rgba(232, 160, 32, 0.12);
+  --green:        #00c56e;
+  --red:          #e8304a;
+  --yellow:       #e8a020;
+  --orange:       #e86020;
 }
 
 /* ─── Reset ─────────────────────────────────────────────── */
@@ -41,7 +41,7 @@ body {
   min-height: 100dvh;
 }
 
-::selection { background: #264f78; color: #e6edf3; }
+::selection { background: #003d22; color: #f0f0f0; }
 
 code, pre, .mono {
   font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
@@ -60,7 +60,7 @@ code, pre, .mono {
 
 /* ─── Liquid glass ───────────────────────────────────────── */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -75,11 +75,11 @@ code, pre, .mono {
   padding: 1px;
   background: linear-gradient(
     170deg,
-    rgba(255, 255, 255, 0.14) 0%,
-    rgba(255, 255, 255, 0.04) 35%,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.03) 35%,
     rgba(255, 255, 255, 0) 55%,
-    rgba(255, 255, 255, 0.04) 80%,
-    rgba(255, 255, 255, 0.14) 100%
+    rgba(255, 255, 255, 0.03) 80%,
+    rgba(255, 255, 255, 0.10) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -89,38 +89,42 @@ code, pre, .mono {
 
 /* ─── Gradient utilities ─────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #89aacc 0%, #4e85bf 45%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #f0f0f0 0%, #00c56e 60%, #009950 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .accent-gradient-bg {
-  background: linear-gradient(135deg, #2f81f7 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00c56e 0%, #009950 100%);
+}
+
+.amber-gradient-bg {
+  background: linear-gradient(135deg, #e8a020 0%, #c47a10 100%);
 }
 
 /* ─── Grid texture overlay ───────────────────────────────── */
 .grid-texture {
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
 /* ─── Orb animations ─────────────────────────────────────── */
 @keyframes orb-1 {
   0%,100% { transform: translate(0,0) scale(1); }
-  33%     { transform: translate(40px,-30px) scale(1.06); }
-  66%     { transform: translate(-20px,25px) scale(0.97); }
+  33%     { transform: translate(50px,-40px) scale(1.08); }
+  66%     { transform: translate(-25px,30px) scale(0.95); }
 }
 @keyframes orb-2 {
   0%,100% { transform: translate(0,0) scale(1); }
-  50%     { transform: translate(-50px,-40px) scale(1.08); }
+  50%     { transform: translate(-60px,-50px) scale(1.12); }
 }
 @keyframes orb-3 {
   0%,100% { transform: translate(0,0); }
-  40%     { transform: translate(30px,-15px); }
-  80%     { transform: translate(-20px,20px); }
+  40%     { transform: translate(40px,-20px); }
+  80%     { transform: translate(-25px,25px); }
 }
 
 /* ─── Scroll indicator ───────────────────────────────────── */
@@ -136,6 +140,12 @@ code, pre, .mono {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ─── Cursor click burst ─────────────────────────────────── */
+@keyframes cursor-burst {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
 /* ─── Generic hover utilities (server-component safe) ────── */
 .hover-text:hover   { color: var(--text) !important; }
 .hover-accent:hover { color: var(--accent) !important; }
@@ -143,12 +153,12 @@ code, pre, .mono {
 
 /* ─── Project bento card hover ───────────────────────────── */
 .project-card {
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
-              box-shadow 0.35s ease;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.4s ease;
 }
 .project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.5);
 }
 .project-card:hover .card-links {
   opacity: 1;
@@ -157,7 +167,7 @@ code, pre, .mono {
 .card-links {
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* ─── Nav responsive ─────────────────────────────────────── */
@@ -169,9 +179,9 @@ code, pre, .mono {
 /* ─── Resume / print ─────────────────────────────────────── */
 @media print {
   :root {
-    --bg: white; --bg-surface: white; --bg-elevated: #f6f8fa;
+    --bg: white; --bg-surface: white; --bg-elevated: #f5f5f5;
     --text: #111; --text-2: #444; --text-muted: #555;
-    --border: #ccc; --accent: #0969da;
+    --border: #ccc; --accent: #009950;
   }
   nav, footer, .no-print { display: none !important; }
   body { font-size: 11pt; background: white; }

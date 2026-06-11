@@ -33,9 +33,9 @@ const ARCHITECTURE = `┌──────────────────�
 └─────────────────────────────────────────────────────────┘`
 
 const TECH = ["Next.js", "TypeScript", "Prisma 7", "PostgreSQL", "iron-session", "Groq AI", "Vercel"]
-const PURPLE = "#8b5cf6"
-const PURPLE_DIM = "rgba(139, 92, 246, 0.12)"
-const PURPLE_BORDER = "rgba(139, 92, 246, 0.22)"
+const PURPLE = "#e8a020"
+const PURPLE_DIM = "rgba(232, 160, 32, 0.10)"
+const PURPLE_BORDER = "rgba(232, 160, 32, 0.22)"
 
 const OAUTH_STEPS = [
   "Generate 16-byte random hex state token → store in HttpOnly cookie",
@@ -112,13 +112,13 @@ export default function PatchworkCaseStudy() {
       <div
         style={{
           position: "relative",
-          background: "linear-gradient(160deg, #130a28 0%, #090519 60%, var(--bg) 100%)",
+          background: "linear-gradient(160deg, #1c1200 0%, #0f0a00 60%, var(--bg) 100%)",
           padding: "80px 20px 64px",
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", top: "-80px", right: "-60px", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 68%)", borderRadius: "50%", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "0", left: "30%", width: "600px", height: "2px", background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.25), transparent)" }} />
+        <div style={{ position: "absolute", top: "-80px", right: "-60px", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(232,160,32,0.16) 0%, transparent 68%)", borderRadius: "50%", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "0", left: "30%", width: "600px", height: "2px", background: "linear-gradient(90deg, transparent, rgba(232,160,32,0.22), transparent)" }} />
 
         <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Link
@@ -147,8 +147,8 @@ export default function PatchworkCaseStudy() {
           </p>
 
           <div style={{ display: "flex", gap: "10px", marginBottom: "28px", flexWrap: "wrap" as const }}>
-            <a href="https://patchwork-theta.vercel.app" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", height: "36px", padding: "0 16px", background: PURPLE, borderRadius: "9999px", fontSize: "13px", color: "#fff", textDecoration: "none", fontWeight: 500 }}>
+            <a href="https://patchwork-vihan.vercel.app" target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", height: "36px", padding: "0 16px", background: PURPLE, borderRadius: "9999px", fontSize: "13px", color: "#000", textDecoration: "none", fontWeight: 500 }}>
               Live Demo ↗
             </a>
             <a href="https://github.com/debug949/patchwork" target="_blank" rel="noopener noreferrer"

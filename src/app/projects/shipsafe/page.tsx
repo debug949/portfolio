@@ -39,9 +39,9 @@ const ARCHITECTURE = `┌──────────────────�
 └─────────────────────────────────────────────────────────┘`
 
 const TECH = ["Next.js", "TypeScript", "Prisma 7", "PostgreSQL", "Groq AI", "Vercel"]
-const ACCENT = "#2f81f7"
-const ACCENT_DIM = "rgba(47, 129, 247, 0.12)"
-const ACCENT_BORDER = "rgba(47, 129, 247, 0.22)"
+const ACCENT = "#00c56e"
+const ACCENT_DIM = "rgba(0, 197, 110, 0.10)"
+const ACCENT_BORDER = "rgba(0, 197, 110, 0.22)"
 
 const DECISIONS = [
   {
@@ -92,15 +92,15 @@ export default function ShipSafeCaseStudy() {
       <div
         style={{
           position: "relative",
-          background: "linear-gradient(160deg, #071b33 0%, #040d1a 60%, var(--bg) 100%)",
+          background: "linear-gradient(160deg, #001a0d 0%, #000e07 60%, var(--bg) 100%)",
           padding: "80px 20px 64px",
           overflow: "hidden",
           marginBottom: "0",
         }}
       >
         {/* Orb */}
-        <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(47,129,247,0.18) 0%, transparent 68%)", borderRadius: "50%", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "0", left: "30%", width: "600px", height: "2px", background: "linear-gradient(90deg, transparent, rgba(47,129,247,0.25), transparent)" }} />
+        <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(0,197,110,0.16) 0%, transparent 68%)", borderRadius: "50%", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "0", left: "30%", width: "600px", height: "2px", background: "linear-gradient(90deg, transparent, rgba(0,197,110,0.25), transparent)" }} />
 
         <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Link
@@ -129,8 +129,8 @@ export default function ShipSafeCaseStudy() {
           </p>
 
           <div style={{ display: "flex", gap: "10px", marginBottom: "28px", flexWrap: "wrap" as const }}>
-            <a href="https://shipsafe-xzne.vercel.app/" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", height: "36px", padding: "0 16px", background: ACCENT, borderRadius: "9999px", fontSize: "13px", color: "#fff", textDecoration: "none", fontWeight: 500 }}>
+            <a href="https://shipsafe-vihan.vercel.app/" target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", height: "36px", padding: "0 16px", background: ACCENT, borderRadius: "9999px", fontSize: "13px", color: "#000", textDecoration: "none", fontWeight: 500 }}>
               Live Demo ↗
             </a>
             <a href="https://github.com/debug949/shipsafe" target="_blank" rel="noopener noreferrer"

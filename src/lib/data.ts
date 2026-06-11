@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
       "Shareable report links backed by PostgreSQL",
     ],
     tech: ["Next.js", "TypeScript", "Prisma 7", "PostgreSQL", "Groq AI"],
-    liveUrl: "https://shipsafe-xzne.vercel.app/",
+    liveUrl: "https://shipsafe-vihan.vercel.app/",
     githubUrl: "https://github.com/debug949/shipsafe",
     caseStudyPath: "/projects/shipsafe",
   },
@@ -39,9 +39,25 @@ export const PROJECTS: Project[] = [
       "Embeddable iframe widget + public JSON API",
     ],
     tech: ["Next.js", "TypeScript", "Prisma 7", "iron-session", "Groq AI"],
-    liveUrl: "https://patchwork-theta.vercel.app",
+    liveUrl: "https://patchwork-vihan.vercel.app",
     githubUrl: "https://github.com/debug949/patchwork",
     caseStudyPath: "/projects/patchwork",
+  },
+  {
+    slug: "verdict",
+    name: "Verdict",
+    tagline: "GitHub PR risk engine — deterministic, not AI",
+    description:
+      "GitHub App that runs a security pipeline on every PR and posts a trust score before merge.",
+    stats: [
+      "Score 0 / 100 on real test PR — Grade F, CRITICAL",
+      "9 findings: 2 secrets + 7 CVEs auto-detected",
+      "8 security zones with zone-weighted risk scoring",
+    ],
+    tech: ["Next.js", "TypeScript", "GitHub Apps", "Upstash Redis", "OSV.dev"],
+    liveUrl: "https://verdict-vihan.vercel.app",
+    githubUrl: "https://github.com/debug949/verdict",
+    caseStudyPath: "/projects/verdict",
   },
 ]
 
@@ -53,10 +69,10 @@ export interface SkillGroup {
 export const SKILL_GROUPS: SkillGroup[] = [
   { label: "Languages", skills: ["TypeScript", "JavaScript"] },
   { label: "Frameworks", skills: ["Next.js", "React"] },
-  { label: "Database", skills: ["PostgreSQL", "Prisma 7", "Neon"] },
+  { label: "Database", skills: ["PostgreSQL", "Prisma 7", "Neon", "Upstash Redis"] },
   {
     label: "Auth & Security",
-    skills: ["OAuth 2.0", "iron-session", "CSRF", "Security headers"],
+    skills: ["OAuth 2.0", "iron-session", "CSRF", "Security headers", "GitHub Apps"],
   },
   { label: "AI", skills: ["Groq", "LLM integration", "Prompt engineering"] },
   { label: "Infrastructure", skills: ["Vercel", "GitHub Actions", "CI/CD"] },
@@ -92,6 +108,12 @@ export const TIMELINE: TimelineItem[] = [
     title: "Shipped Patchwork",
     description:
       "GitHub OAuth changelog SaaS: raw OAuth 2.0, multi-tenant architecture, embeddable widget.",
+  },
+  {
+    period: "Jun 2026",
+    title: "Shipped Verdict",
+    description:
+      "GitHub App PR risk engine: deterministic security scoring, zone-weighted CVE + secret detection.",
   },
   {
     period: "Now",

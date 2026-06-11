@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { LoadingScreen } from "./LoadingScreen"
 import { CONTACT } from "@/lib/data"
 
@@ -13,6 +13,8 @@ export function HeroSection() {
   const [showLoader, setShowLoader] = useState(false)
   const [loaderDone, setLoaderDone] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll()
+  const parallaxY = useTransform(scrollY, [0, 600], [0, -80])
 
   useEffect(() => {
     setShowLoader(true)
@@ -57,14 +59,15 @@ export function HeroSection() {
           }}
         />
 
-        {/* Content */}
-        <div
+        {/* Content — motion.div for parallax scroll */}
+        <motion.div
           style={{
             position: "relative",
             zIndex: 1,
             maxWidth: "800px",
             width: "100%",
             padding: "0 24px",
+            y: parallaxY,
           }}
         >
           {/* Eyebrow */}
@@ -147,8 +150,8 @@ export function HeroSection() {
               margin: "0 auto 44px",
             }}
           >
-            Building developer tools that solve problems I actually run into.
-            ShipSafe and Patchwork are live in production.
+            Building developer tools that solve real problems.
+            ShipSafe, Patchwork, and Verdict are live in production.
           </motion.p>
 
           {/* CTAs */}
@@ -201,7 +204,7 @@ export function HeroSection() {
               Reach out ↗
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
         <motion.div
